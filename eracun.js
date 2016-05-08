@@ -191,10 +191,14 @@ streznik.post('/izpisiRacunBaza', function(zahteva, odgovor) {
     
 })
 
+
 // Izpis računa v HTML predstavitvi ali izvorni XML obliki
 streznik.get('/izpisiRacun/:oblika', function(zahteva, odgovor) {
+
   pesmiIzKosarice(zahteva, function(pesmi) {
-    if (!pesmi) {
+    vrniStranko(zahteva.session.strankaId, function(napakaA, stranka) {
+          //test session.prijava
+   if (!pesmi) {
       odgovor.sendStatus(500);
     } else if (pesmi.length == 0) {
       odgovor.send("<p>V košarici nimate nobene pesmi, \
@@ -203,9 +207,12 @@ streznik.get('/izpisiRacun/:oblika', function(zahteva, odgovor) {
       odgovor.setHeader('content-type', 'text/xml');
       odgovor.render('eslog', {
         vizualiziraj: zahteva.params.oblika == 'html' ? true : false,
-        postavkeRacuna: pesmi
+        postavkeRacuna: pesmi,
+        strankaRacuna : stranka
       })  
     }
+    });
+
   })
 })
 
@@ -217,6 +224,16 @@ streznik.get('/izpisiRacun', function(zahteva, odgovor) {
 // Vrni stranke iz podatkovne baze
 var vrniStranke = function(callback) {
   pb.all("SELECT * FROM Customer",
+    function(napaka, vrstice) {
+      callback(napaka, vrstice);
+    }
+  );
+}
+
+// Vrni stranko iz podatkovne baze
+var vrniStranko = function(strankaId, callback) {
+  //console.log(prijava);
+  pb.all("SELECT * FROM Customer WHERE CustomerId = " + strankaId,
     function(napaka, vrstice) {
       callback(napaka, vrstice);
     }
@@ -276,7 +293,12 @@ streznik.post('/stranka', function(zahteva, odgovor) {
   var form = new formidable.IncomingForm();
   
   form.parse(zahteva, function (napaka1, polja, datoteke) {
+<<<<<<< HEAD
     zahteva.session.prijavljen = polja.seznamStrank;
+=======
+    zahteva.session.prijava = polja.seznamStrank;
+    zahteva.session.strankaId = polja.seznamStrank;
+>>>>>>> prikaz-racuna-trenutni
     odgovor.redirect('/')
   });
 })

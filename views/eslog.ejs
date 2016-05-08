@@ -209,6 +209,7 @@
 			</ReferencniPodatkiPodjetja>
 			<KontaktiPodjetja>
 				<KontaktnaOseba>
+<<<<<<< HEAD
 					<ImeOsebe><%= strankaRacuna[0].FirstName + " " + strankaRacuna[0].LastName + " (" + strankaRacuna[0].Email + ")"%></ImeOsebe>
 				</KontaktnaOseba>
 				<Komunikacije>
@@ -217,6 +218,16 @@
 				</Komunikacije>
 				<Komunikacije>
 					<StevilkaKomunikacije><%= strankaRacuna[0].Fax %></StevilkaKomunikacije>
+=======
+					<ImeOsebe><%= strankaRacuna[0].FirstName + " " +  strankaRacuna[0].LastName + " (" + strankaRacuna[0].Email + ")"%></ImeOsebe>
+				</KontaktnaOseba>
+				<Komunikacije>
+					<StevilkaKomunikacije><%= strankaRacuna[0].Phone%></StevilkaKomunikacije>
+					<VrstaKomunikacije>TE</VrstaKomunikacije>
+				</Komunikacije>
+				<Komunikacije>
+					<StevilkaKomunikacije><%= strankaRacuna[0].Fax%></StevilkaKomunikacije>
+>>>>>>> prikaz-racuna-trenutni
 					<VrstaKomunikacije>FX</VrstaKomunikacije>
 				</Komunikacije>
 			</KontaktiPodjetja>
