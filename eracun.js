@@ -47,7 +47,7 @@ function davcnaStopnja(izvajalec, zanr) {
 
 // Prikaz seznama pesmi na strani
 streznik.get('/', function(zahteva, odgovor) {
-  if(!zahteva.session.prijavljen) {
+  if(!zahteva.session.strankaId) {
     odgovor.redirect('/prijava');
   } else {
     pb.all("SELECT Track.TrackId AS id, Track.Name AS pesem, \
@@ -293,19 +293,16 @@ streznik.post('/stranka', function(zahteva, odgovor) {
   var form = new formidable.IncomingForm();
   
   form.parse(zahteva, function (napaka1, polja, datoteke) {
-<<<<<<< HEAD
-    zahteva.session.prijavljen = polja.seznamStrank;
-=======
-    zahteva.session.prijava = polja.seznamStrank;
+    //zahteva.session.prijavljen = polja.seznamStrank;
+    //zahteva.session.prijava = polja.seznamStrank;
     zahteva.session.strankaId = polja.seznamStrank;
->>>>>>> prikaz-racuna-trenutni
     odgovor.redirect('/')
   });
 })
 
 // Odjava stranke
 streznik.post('/odjava', function(zahteva, odgovor) {
-    zahteva.session.prijavljen = null;
+    zahteva.session.strankaId = null;
     odgovor.redirect('/prijava') 
 })
 
