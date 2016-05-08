@@ -192,7 +192,7 @@ var vrniStranke = function(callback) {
 
 // Vrni stranko iz podatkovne baze
 var vrniStranko = function(strankaId, callback) {
-  console.log(strankaId);
+  //console.log(prijava);
   pb.all("SELECT * FROM Customer WHERE CustomerId = " + strankaId,
     function(napaka, vrstice) {
       callback(napaka, vrstice);
@@ -250,6 +250,7 @@ streznik.post('/stranka', function(zahteva, odgovor) {
   var form = new formidable.IncomingForm();
   
   form.parse(zahteva, function (napaka1, polja, datoteke) {
+    zahteva.session.prijava = polja.seznamStrank;
     zahteva.session.strankaId = polja.seznamStrank;
     odgovor.redirect('/')
   });
