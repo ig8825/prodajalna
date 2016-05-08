@@ -75,11 +75,11 @@
               </form>
           </div>
           <br />
-          <h3><span class="glyphicon glyphicon-usd"></span> Izbira računa</h3>
+          <h3><span class="glyphicon glyphicon-usd"></span> Izbira računa </h3>
           <div id="seznam2">
                 <form action="/izpisiRacunBaza" method="post" enctype="multipart/form-data" target="_blank">
                 <div class="form-group">
-                    <select size="10" id="seznamRacunov" name="seznamRacunov" class="form-control">
+                    <select size="10" id="seznamRacunov" name="seznamRacunov" class="form-control"> 
                         <% seznamRacunov.forEach(function(racun) { %>
                           <option value="<%= racun.InvoiceId %>" selected>
                               <%= racun.Naziv %>
