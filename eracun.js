@@ -156,7 +156,7 @@ streznik.post('/izpisiRacunBaza', function(zahteva, odgovor) {
 streznik.get('/izpisiRacun/:oblika', function(zahteva, odgovor) {
 
   pesmiIzKosarice(zahteva, function(pesmi) {
-    vrniStranko(zahteva.session.strankaId, function(napakaA, oStranki) {
+    vrniStranko(zahteva.session.strankaId, function(napakaA, stranka) {
           //test session.prijava
    if (!pesmi) {
       odgovor.sendStatus(500);
@@ -168,7 +168,7 @@ streznik.get('/izpisiRacun/:oblika', function(zahteva, odgovor) {
       odgovor.render('eslog', {
         vizualiziraj: zahteva.params.oblika == 'html' ? true : false,
         postavkeRacuna: pesmi,
-        stranka : oStranki
+        strankaRacuna : stranka
       })  
     }
     });
